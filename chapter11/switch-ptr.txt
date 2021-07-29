@@ -1,0 +1,25 @@
+package main
+
+import "fmt"
+
+type Switch string
+
+func (s *Switch) toggle() {
+	if *s == "вкл" {
+		*s = "выкл"
+	} else {
+		*s = "вкл"
+	}
+	fmt.Println(*s)
+}
+
+type Toggleable interface {
+	toggle()
+}
+
+func main() {
+	s := Switch("выкл")
+	var t Toggleable = &s //нужен &указатель (см. стр.7)
+	t.toggle()
+	t.toggle()
+}

@@ -1,0 +1,45 @@
+package main
+
+import "fmt"
+
+type Car string
+
+func (c Car) Accelerate() {
+	fmt.Println("Ускорились...")
+}
+func (c Car) Brake() {
+	fmt.Println("Торможение.")
+}
+func (c Car) Steer(dir string) {
+	fmt.Println("Поворачиваем", dir)
+}
+
+type Truck string
+
+func (t Truck) Accelerate() {
+	fmt.Println("Ускорились...")
+}
+func (t Truck) Brake() {
+	fmt.Println("Торможение.")
+}
+func (t Truck) Steer(dir string) {
+	fmt.Println("Поворачиваем", dir)
+}
+func (t Truck) LoadCargo(cg string) {
+	fmt.Println("Загружаем", cg)
+}
+
+type Vehicle interface {
+	Accelerate()
+	Brake()
+	Steer(d string)
+}
+
+func main() {
+	var veh Vehicle = Car("Toyota Yarvic")
+	veh.Accelerate()
+	veh.Steer("налево")
+	veh = Truck("Ford F180")
+	veh.Brake()
+	veh.Steer("направо")
+}

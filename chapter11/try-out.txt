@@ -1,0 +1,24 @@
+package main
+
+import (
+	"gadget"
+)
+
+type Player interface {
+	Play(string)
+	Stop()
+}
+
+func TryOut(pl Player) {
+	pl.Play("Новый тречк MoreGaySlave-а")
+	pl.Stop()
+	rec, ok := pl.(gadget.TapeRecorder)
+	if ok {
+		rec.Record()
+	}
+}
+
+func main() {
+	TryOut(gadget.TapeRecorder{})
+	TryOut(gadget.TapePlayer{})
+}
