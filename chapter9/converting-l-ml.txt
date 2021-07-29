@@ -1,0 +1,22 @@
+package main
+
+import "fmt"
+
+type Liters float64
+type Mliters float64
+
+func ToLiters(m Mliters) Liters {
+	return Liters(m / 1000)
+}
+
+func ToMliters(l Liters) Mliters {
+	return Mliters(l * 1000)
+}
+
+func main() {
+	ohota := Liters(1.5)
+	diesel := Mliters(450)
+	ohota += ToLiters(Mliters(100.0))
+	diesel -= ToMliters(Liters(0.05))
+	fmt.Println("Стало: Охота - L", ohota, "\tДизель - ML", diesel)
+}

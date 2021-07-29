@@ -1,0 +1,23 @@
+//#9
+//Was:
+package main
+
+import (
+	"fmt"
+	"math"
+)
+
+type Number float64
+
+func (n Number) Tenify() float64 {
+	return (math.Pow(float64(n), 10))
+}
+
+func main() {
+	x := Number(2)
+	fmt.Println("B4:", x)
+	x.Tenify()
+	fmt.Println("After:", x)
+}
+
+//Should be:

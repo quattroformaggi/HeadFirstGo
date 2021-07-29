@@ -1,0 +1,14 @@
+package main
+
+import "fmt"
+
+type Noname string
+
+func (nnm Noname) MetodSParametrami(num int, flag bool) {
+	fmt.Println(nnm, num, flag)
+}
+
+func main() {
+	val := Noname("значение без имени...")
+	val.MetodSParametrami(1, false)
+}

@@ -1,0 +1,23 @@
+package main
+
+import "gadget"
+
+type Player interface {
+	Play(string)
+	Stop()
+}
+
+func playList(device Player, songs []string) {
+	for _, song := range songs {
+		device.Play(song)
+	}
+	device.Stop()
+}
+
+func main() {
+	mixtape := []string{"Кадиллак", "El Problema", "20!8"}
+	var pl Player = gadget.TapePlayer{}
+	playList(pl, mixtape)
+	pl = gadget.TapeRecorder{}
+	playList(pl, mixtape)
+}

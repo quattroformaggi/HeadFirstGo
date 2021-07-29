@@ -1,0 +1,14 @@
+package main
+
+import "fmt"
+
+type Population int
+
+func main() {
+	var population Population
+	population = Population(572)
+	fmt.Println("Популяция Караганды:", population, "человек")
+	fmt.Println("Родилась ещё одна девочка!")
+	population += 1
+	fmt.Println("Популяция Караганды:", population, "человек")
+}

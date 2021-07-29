@@ -1,0 +1,28 @@
+package main
+
+import (
+	"calendar"
+	"fmt"
+	"log"
+)
+
+func main() {
+	event := calendar.Event{}
+	err := event.SetYear(2021)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = event.SetMonth(07)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = event.SetDay(02)
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = event.SetTitle("Двадцатьпятьсимволовиболее")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(event.Year(), event.Month(), event.Day(), ",\t", event.Title)
+}

@@ -1,0 +1,53 @@
+/*Exercise 2: Type Assertions
+
+Here are updated Fan and CoffeePot types, both of which satisfy an Appliance interface.
+We’ve also added a Use method that accepts an Appliance.
+Currently, Use only calls the TurnOn method on the Appliance…
+
+Update Use so that it calls Oscillate on the Appliance if (and only if) it’s a Fan.
+Use should also call Brew on the Appliance if (and only if) it’s a CoffeePot.*/
+package main
+
+import "fmt"
+
+type Appliance interface {
+	TurnOn()
+}
+
+type Fan string
+
+func (f Fan) TurnOn() {
+	fmt.Println("Spinning")
+}
+func (f Fan) Oscillate() {
+	fmt.Println("Rotating on base")
+}
+
+type CoffeePot string
+
+func (c CoffeePot) TurnOn() {
+	fmt.Println("Powering up")
+}
+func (c CoffeePot) Brew() {
+	fmt.Println("Heating Up")
+}
+
+func Use(appliance Appliance) {
+	fmt.Println(appliance)
+	appliance.TurnOn()
+
+	fa, okA := appliance.(Fan)
+	if okA {
+		fa.Oscillate()
+	}
+	co, okB := appliance.(CoffeePot)
+	if okB {
+		co.Brew()
+	}
+	// YOUR CODE HERE
+}
+
+func main() {
+	Use(Fan("Windco Breeze"))
+	Use(CoffeePot("LuxBrew"))
+}

@@ -1,0 +1,81 @@
+/*Exercise 2: panic and recover
+
+Go through the following code samples, and predict what their output will be.
+No need to predict all the details of the stack traces;
+focus on determining which fmt.Println calls will get made, and in what order.*/
+
+//[1]
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	fmt.Println("a")
+// 	panic("oh no")
+// 	fmt.Println("b")	//никогда не вызовется
+// }
+
+//Предварительный ответ:
+//a, panic(oh no) (верно)
+
+//[2]
+// package main
+
+// import "fmt"
+
+// func myFunction() {
+// 	defer fmt.Println("b")	//выполнится при выходе
+// 	panic("oh no")
+// }
+
+// func main() {
+// 	fmt.Println("a")
+// 	myFunction()
+// }
+
+//Предварительный ответ:
+//a, b, panic("oh no") (верно)
+
+//[3]
+// package main
+
+// import "fmt"
+
+// func myFunction() {
+// 	panic("oh no")
+// 	fmt.Println(recover())	//функция выйдет раньше
+// }
+
+// func main() {
+// 	fmt.Println("a")
+// 	myFunction()
+// 	fmt.Println("b")
+// }
+
+//Предварительный ответ:
+//a, panic(oh no), b (неверно: a, panic(oh no))
+
+//[4]
+package main
+
+import "fmt"
+
+func otherFunction() {
+	fmt.Println("c")       //отложенное выполнение
+	fmt.Println(recover()) //спасение от раннего вылета
+}
+
+func myFunction() {
+	defer otherFunction() //выполнится при панике
+	panic("oh no")
+	fmt.Println("d") //не выполнится, функция выйдет
+}
+
+func main() {
+	fmt.Println("a")
+	myFunction()
+	fmt.Println("b") //выполнение продолжится
+}
+
+//Предварительный ответ:
+//a,panic(oh no),c,oh no,b (неверно: a,c,oh no,b)

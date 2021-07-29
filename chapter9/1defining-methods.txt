@@ -1,0 +1,28 @@
+/*Exercise 1: Defining Methods
+In the last chapter’s exercises,
+we had you write a rectangleInfo function that
+accepted a rectangle struct value and printed
+its length and width fields. Convert the rectangleInfo
+function into an info method on the rectangle type.*/
+package main
+
+import "fmt"
+
+type rectangle struct {
+	length float64
+	width  float64
+}
+
+// YOUR CODE HERE: Convert this function to a method on
+// the "rectangle" type named "info".
+func (info rectangle) rectangleInfo() {
+	fmt.Println("Length:", info.length)
+	fmt.Println("Width:", info.width)
+}
+
+func main() {
+	var r rectangle
+	r.length = 4.2
+	r.width = 2.4
+	r.rectangleInfo()
+}

@@ -1,0 +1,41 @@
+package main
+
+import "fmt"
+
+type Cat string
+type Dog string
+
+func (c Cat) makeSound() {
+	fmt.Println("Мяу!")
+}
+
+func (d Dog) makeSound() {
+	fmt.Println("Гав!")
+}
+
+type AnimalSounds interface {
+	makeSound()
+}
+
+type Robot string
+
+func (r Robot) makeSound() {
+	fmt.Println("Вжжжжюююммммм...")
+}
+func (r Robot) move() {
+	fmt.Println("Двигаюсь...")
+}
+
+func play(as AnimalSounds) {
+	as.makeSound()
+	as.move() //СЮДААА ОШИБКА
+}
+
+func main() {
+	var as AnimalSounds
+	as = Cat("Барсик")
+	as.makeSound()
+	as = Dog("Шарик")
+	as.makeSound()
+	play(Robot("Чикироботник"))
+}

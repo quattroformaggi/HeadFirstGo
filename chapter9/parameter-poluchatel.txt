@@ -1,0 +1,17 @@
+16:14 29.06.2021
+package main
+
+import "fmt"
+
+type Noname string
+
+func (nnm Noname) privet() { //в скобках параметр-получатель
+	fmt.Println("Привет от", nnm) //равносилен self || this
+}
+
+func main() {
+	val := Noname("значения-ноунейма!")
+	val.privet()
+	anotherval := Noname("другого значения!")
+	anotherval.privet()
+}

@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"log"
+)
+
+type OverheatErr float64
+
+func (o OverheatErr) Error() string {
+	return fmt.Sprintf("Перегрев на %0.2f градусов!", o)
+}
+
+func checkTemp(actual float64, safe float64) error {
+	excess := actual - safe
+	if excess > 0 {
+		return OverheatErr(excess)
+	}
+	return nil
+}
+
+func main() {
+	var e error = checkTemp(56, 52)
+	if e != nil {
+		log.Fatal(e)
+	}
+}

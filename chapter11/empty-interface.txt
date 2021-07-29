@@ -1,0 +1,16 @@
+package main
+
+import (
+	"fmt"
+)
+
+func AcceptAnything(th interface{}) {
+	fmt.Println(th)
+}
+
+func main() {
+	AcceptAnything(3.141592654)
+	AcceptAnything("тупа текст пажилой")
+	AcceptAnything(true)
+	AcceptAnything('Ж')
+}

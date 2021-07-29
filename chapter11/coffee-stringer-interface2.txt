@@ -1,0 +1,19 @@
+package main
+
+import (
+	"fmt"
+)
+
+type CoffeePot string
+
+func (c CoffeePot) String() string {
+	return "Чашка кофе марки " + string(c)
+}
+
+func main() {
+	coffee := CoffeePot("Лавацца")
+	fmt.Println(coffee.String())
+	fmt.Print(coffee, "\n")
+	fmt.Println(coffee)
+	fmt.Printf("%s", coffee)
+}

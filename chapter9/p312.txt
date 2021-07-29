@@ -1,0 +1,24 @@
+16:39 29.06.2021
+package main
+
+import "fmt"
+
+type Number int
+
+func (n Number) Add(otherNumber int) {
+	fmt.Println(n, "+", otherNumber, "=", int(n)+otherNumber)
+}
+
+func (n Number) Sub(otherNumber int) {
+	fmt.Println(n, "-", otherNumber, "=", int(n)-otherNumber)
+}
+
+func main() {
+	x := Number(100)
+	y := Number(23)
+	x.Add(10)
+	y.Sub(20)
+	z := Number(1)
+	z.Add(int(x))
+	z.Sub(int(y))
+}
