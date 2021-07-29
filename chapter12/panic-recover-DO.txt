@@ -1,0 +1,18 @@
+package main
+
+import "fmt"
+
+func scream() {
+	defer stop()				//отложенно выполнится до паники
+	panic("AAAAHHH!")
+	fmt.Println("хй я не напечатаюсь...")	//не напечатается
+}
+
+func stop() {
+	recover()
+}
+
+func main() {
+	scream()
+	fmt.Println("Гачи крики остановлены!")	//напечатается нормально
+}

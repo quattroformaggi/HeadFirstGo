@@ -1,0 +1,13 @@
+package main
+
+import "fmt"
+
+func scream() {
+	panic("AAAAHHH!")
+}
+
+func main() {
+	scream()
+	recover()				//не исполнится, вылетит ещё на scream()
+	fmt.Println("Gachi scream stopped...")	//не исполнится, вылетит ещё на scream()
+}

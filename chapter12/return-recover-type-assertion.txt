@@ -1,0 +1,19 @@
+package main
+
+import (
+	"fmt"
+)
+
+func stop() {
+	p := recover()
+	err, ok := p.(error)
+	if ok {
+		fmt.Println(err.Error())
+	}
+}
+
+func main() {
+	defer stop()
+	err := fmt.Errorf("ошибка стоп...")
+	panic(err)
+}

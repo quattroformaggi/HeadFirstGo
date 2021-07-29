@@ -1,0 +1,17 @@
+package main
+
+import (
+	"fmt"
+)
+
+func snack() {
+	defer fmt.Println("Закрыт холодильник")
+	fmt.Println("Открыт холодильник")
+	panic("Холодильник пуст...")
+}
+
+func main() {
+	snack()
+}
+
+//goroutine error: open-close-empty-panic

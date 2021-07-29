@@ -1,0 +1,43 @@
+package main
+
+import (
+	"fmt"
+	"log"
+)
+
+type Refrigerator []string
+
+func find(item string, slice []string) bool {
+	for _, sliceItem := range slice {
+		if item == sliceItem {
+			return true
+		}
+	}
+	return false
+}
+func (r Refrigerator) Open() {
+	fmt.Println("Открываем холодильник")
+}
+func (r Refrigerator) Close() {
+	fmt.Println("Закрываем холодильник")
+}
+func (r Refrigerator) FindFood(food string) error {
+	r.Open()
+	defer r.Close()
+	if find(food, r) {
+		fmt.Println("Найдено:", food)
+	} else {
+		return fmt.Errorf("%s не найден.", food)
+	}
+	return nil
+}
+
+func main() {
+	fridge := Refrigerator{"Молоко", "Пица", "Сальса", "Пельмеши"}
+	for _, food := range []string{"Молоко", "Сушёное манго"} {
+		err := fridge.FindFood(food)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+}
