@@ -1,0 +1,44 @@
+/*Exercise 1: Goroutines and Channels
+
+Here’s our program that runs the a and b functions in goroutines again.
+Previously, we used time.Sleep(time.Second) to keep the main goroutine from exiting until the other goroutines finished.
+But these functions don’t take anywhere near a second to finish, meaning it takes longer than necessary for the program to complete.
+
+Revise the a and b functions to accept a channel as a parameter.
+Each function should send a value to the channel when its work is complete.
+We just want to use the channel for synchronization, so the values sent don’t really matter; we suggest bool values.
+
+In main, you’ll need to create the channel you’re going to use.
+Call a in a new goroutine, passing the channel as an argument.
+Do the same for b. (You can pass a single channel to both functions.)
+Finally, read from the channel twice.
+Each read will cause the main goroutine to block, allowing the other two goroutines to complete before the program exits.*/
+
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func a(channel chan string) {
+	for i := 0; i < 50; i++ {
+		fmt.Print("a")
+	}
+	channel <- "A - done"
+}
+
+func b(channel chan string) {
+	for i := 0; i < 50; i++ {
+		fmt.Print("b")
+	}
+	channel <- "B - done"
+}
+
+func main() {
+	mych := make(chan string)
+	go a(mych)
+	go b(mych)
+	time.Sleep(time.Second)
+	fmt.Println("\n", <-mych, <-mych, "\nend main()")
+}

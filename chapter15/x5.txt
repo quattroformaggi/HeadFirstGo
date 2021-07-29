@@ -1,0 +1,20 @@
+package main
+
+import (
+	"fmt"
+)
+
+func Hello() {
+	fmt.Print("Привет\t")
+}
+
+func quintice(aFunc func()) {
+	for i := 0; i < 5; i++ {
+		aFunc()
+	}
+	fmt.Println()
+}
+
+func main() { //если получен соответствующий запрос
+	quintice(Hello)
+}

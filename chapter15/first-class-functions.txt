@@ -1,0 +1,16 @@
+package main
+
+import (
+	"fmt"
+)
+
+func Hello() { //обычное объявление
+	fmt.Print("Привет\t")
+}
+
+func main() {
+	var myFunc func() //переменная функции
+	myFunc = Hello    //переменной присваивается функция
+	myFunc()          //вызов функции, хранящейся в переменной
+	fmt.Println()
+}

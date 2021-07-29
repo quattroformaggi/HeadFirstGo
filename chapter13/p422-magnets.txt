@@ -1,0 +1,20 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func repeat(s string) {
+	for i := 0; i < 25; i++ {
+		fmt.Print(s)
+	}
+}
+
+func main() {
+	go repeat("x")
+	go repeat("y")
+	go fmt.Println()
+	time.Sleep(time.Second)
+}
+//random 25 x'es and y's

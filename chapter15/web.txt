@@ -1,0 +1,20 @@
+package main
+
+import (
+	"log"
+	"net/http"
+)
+
+func viewHandler(writer http.ResponseWriter, request *http.Request) { //запрос браузеру, ответ от браузера
+	msg := []byte("Привет, сеть!") //ответ браузеру и запрос от браузера
+	_, err := writer.Write(msg)    // в ответ добавляется
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func main() { //если получен соответствующий запрос
+	http.HandleFunc("/hello", viewHandler)            //вызывается соответствующий ответ
+	err := http.ListenAndServe("localhost:8080", nil) //прослушивание
+	log.Fatal(err)
+}

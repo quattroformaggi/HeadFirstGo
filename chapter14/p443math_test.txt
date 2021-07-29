@@ -1,0 +1,14 @@
+package arithmetic
+import "testing"
+
+func TestAdd(t *testing.T){
+	if Add(1,2)!=3{
+		t.Error("1+2 не равно 3.")
+	}
+}
+
+func TestSub(t *testing.T){
+	if Sub(8,4) != 4 {
+		t.Error("8-4 не равно 4.")
+	}
+}

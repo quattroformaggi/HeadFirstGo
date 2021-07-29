@@ -1,0 +1,25 @@
+package ordinals
+
+import "testing"
+
+type testData2 struct{
+	list int
+	want string
+}
+
+func TestOrdinal2(t *testing.T){
+	tests:=[]testData2{
+		testData2{list:1,want:"1st"},
+		testData2{list:2,want:"2nd"},
+		testData2{list:3,want:"3rd"},
+		testData2{list:4,want:"4th"},
+		testData2{list:11,want:"11th"},
+		testData2{list:21,want:"21st"},
+	}
+	for _,test:=range tests{
+		got := Ordinal(test.list)
+		if got!=test.want{
+			t.Errorf("Ordinal(%#v) = \"%s\", нужно \"%s\"",test.list,got,test.want)
+		}
+	}
+}

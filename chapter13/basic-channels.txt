@@ -1,0 +1,16 @@
+package main
+
+import (
+	"fmt"
+)
+
+func pi(myChannel chan float64) {
+	myChannel <- 3.141592654
+}
+
+func main() {
+	myChannel := make(chan float64)
+	go pi(myChannel)
+	fmt.Println(<-myChannel)
+}
+//3.141592654

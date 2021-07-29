@@ -1,0 +1,28 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func printA() {
+	for i := 0; i < 10; i++ {
+		fmt.Print("А")
+	}
+	fmt.Println()
+}
+
+func printB() {
+	for i := 0; i < 10; i++ {
+		fmt.Print("Б")
+	}
+	fmt.Println()
+}
+
+func main() {
+	go printA()
+	go printB()
+	time.Sleep(time.Second)
+	fmt.Println("Конец исполнения.")
+}
+//ББББББББББ АААААААААА Конец исполнения.

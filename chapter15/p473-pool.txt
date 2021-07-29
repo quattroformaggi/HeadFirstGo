@@ -1,0 +1,37 @@
+package main
+
+import (
+	"fmt"
+)
+
+func callFunc(passedFunc func()) {
+	passedFunc()
+}
+func callTwice(passedFunc func()) {
+	passedFunc()
+	passedFunc()
+}
+func callWithArgs(passedFunc func(string, bool)) {
+	passedFunc("Это предложение", false)
+}
+func printReturnVal(passedFunc func() string) {
+	fmt.Println(passedFunc())
+}
+func funcA() {
+	fmt.Println("функция вызвана")
+}
+func funcB() string {
+	fmt.Println("функция вызвана")
+	return "возвращаемся из функции"
+}
+func funcC(a string, b bool) {
+	fmt.Println("функция вызвана")
+	fmt.Println("A:", a, "B:", b)
+}
+
+func main() {
+	callFunc(funcA)
+	callTwice(funcA)
+	callWithArgs(funcC)
+	printReturnVal(funcB)
+}

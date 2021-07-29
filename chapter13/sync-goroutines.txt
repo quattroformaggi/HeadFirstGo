@@ -1,0 +1,30 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func reportNap(name string, delay int) { //намеренное замедление
+	for i := 0; i < delay; i++ { //на заданное число сек.
+		fmt.Println(name, "спит Zzz...") //вывод статуса
+		time.Sleep(1 * time.Second)      //каждую секунду
+	}
+	fmt.Println(name, "проснулась!")
+}
+
+func send(myChan chan string) {
+	reportNap("отправляемая горутина", 2)
+	fmt.Println("*отправка значения*")
+	myChan <- "Г"
+	fmt.Println("*отправка значения*")
+	myChan <- "Ф"
+	fmt.Println("Конец передачи.")
+}
+
+func main() {
+	myChan := make(chan string)
+	go send(myChan)
+	reportNap("получаемая горутина", 5)
+	fmt.Println("Вывод:", <-myChan, <-myChan) //Г Ф
+}
